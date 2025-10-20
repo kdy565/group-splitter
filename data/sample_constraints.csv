@@ -1,0 +1,6 @@
+type,id1,id2,strength,notes
+together,P001,P002,hard,4학년 조교 둘은 반드시 같은 조
+together,P001,P003,hard,연애중
+apart,P003,P004,hard,성향이 안 맞음
+together,P009,P010,soft,같은 실험조라 함께 있으면 좋음
+apart,P011,P012,soft,비슷한 역할 피하기
