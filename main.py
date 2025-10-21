@@ -3,13 +3,14 @@ from collections import Counter
 
 # --- import core modules ---
 from constraints import (
-    process_constraints,
+    process_constraints_friendly,
     build_hard_clusters,
     validate_hard_contradictions_simple,
 )
 from allocation import allocate_teams
 from balance import balance_teams
 from report import export_team_matrix_excel, export_team_matrix_csv
+import random
 
 # ---------------------------
 # 출력 유틸 함수들
@@ -43,12 +44,12 @@ def show_group_summary(teams, group_col="group"):
 # ---------------------------
 
 if __name__ == "__main__":
-    K = 9          # 만들 팀 개수
-    seed = 42      # 재현용 랜덤 시드
+    K = 8          # 만들 팀 개수
+    seed = random.randint(0, 1000000)  # 실행마다 바뀌는 랜덤 시드
 
     # 데이터 로드
-    people_df = pd.read_csv("data/people.csv")
-    cons = process_constraints("data/constraints.csv")
+    people_df = pd.read_csv("data/people.csv", dtype={"id":str})
+    cons = process_constraints_friendly("data/constraints.csv",people_df)
 
     # 하드 제약 모순 체크
     id2c, c2ids = build_hard_clusters(people_df["id"].tolist(), cons)
